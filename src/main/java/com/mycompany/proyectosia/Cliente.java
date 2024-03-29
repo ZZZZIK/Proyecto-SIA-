@@ -6,7 +6,8 @@ public class Cliente {
   private String correo;
   private int numTelefono;
   private ArrayList<PlanComun> listaPlanes;
-
+  
+  
   // CONSTRUCTOR
   public Cliente(String nombre, String rut, String correo, int numTelefono) {
     this.nombre = nombre;
@@ -16,6 +17,24 @@ public class Cliente {
     this.listaPlanes = new ArrayList<PlanComun>();
   }
 
+  // Sobrecarga de método descuento
+  
+  // Descuento para cliente nuevo 5%
+  public double descuento(double precioOriginal){
+    double precioDcto = precioOriginal * 0.05;
+    double precioFinal = precioOriginal - precioDcto;
+    return precioFinal;
+  }
+
+  // Descuento cliente que ya posee 3 planes del 15%
+  public double descuento(double precioOriginal,int cant_planes){
+    int acumDcto = cant_planes / 3;
+    double precioDescuento = precioOriginal * (0.05 * acumDcto);
+    double precioFinal = precioOriginal - precioDescuento;
+    return precioFinal;
+  }
+
+  
   // METODOS SETTER - GETTER
   public void setNombre(String nombre) {
     this.nombre = nombre;

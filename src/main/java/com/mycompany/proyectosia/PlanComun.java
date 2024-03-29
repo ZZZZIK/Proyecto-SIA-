@@ -14,7 +14,7 @@ public class PlanComun {
     this.minutos = minutos;
     this.sms = sms;
   }
-  
+
   // METODOS
   public double calcularCostoTotal() {
     return precio;
@@ -23,13 +23,13 @@ public class PlanComun {
   public double calcularCostoTotal(int smsUsados) {
     double costoTotal = calcularCostoTotal();
     int costoAdicional= 50;
-    
+
     if (sms < smsUsados) {
       costoTotal += (smsUsados - sms) * costoAdicional;
     }
     return costoTotal;
   }
-  
+
   // METODOS SETTER - GETTER
   public void setNombre(String nombre) {
     this.nombre = nombre;
@@ -46,7 +46,7 @@ public class PlanComun {
   public void setSms(int sms) {
     this.sms = sms;
   }
-  
+
   public String getNombre() {
     return nombre;
   }
@@ -63,5 +63,4 @@ public class PlanComun {
     return sms;
   }
 }
-
 
