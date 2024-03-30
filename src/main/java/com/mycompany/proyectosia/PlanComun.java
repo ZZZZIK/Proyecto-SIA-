@@ -1,10 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package com.mycompany.famax.mavenproject1;
-
 public class PlanComun {
 
   private String nombre;
@@ -12,33 +5,53 @@ public class PlanComun {
   private int gigas;
   private int minutos;
   private int sms;
+  private int roaming;
 
   // CONSTRUCTOR
-  public PlanComun(String nombre, double precio, int gigas, int minutos, int sms) {
+  public PlanComun(String nombre, double precio, int gigas, int minutos, int sms, int roaming) {
     this.nombre = nombre;
     this.precio = precio;
     this.gigas = gigas;
     this.minutos = minutos;
     this.sms = sms;
+    this.roaming = roaming;
   }
 
   // METODOS
-  public double calcularCostoTotal() {
-    return precio;
-  }
-
-  public double calcularCostoTotal(int smsUsados) {
-    double costoTotal = calcularCostoTotal();
-    int costoAdicional= 50;
-
-    if (sms < smsUsados) {
-      costoTotal += (smsUsados - sms) * costoAdicional;
+  //caso 1, roaming libre , usuario tiene roaming ilimitado y no tiene que ingresar nada
+  public void establecerRoaming() {
+    if (nombre == "Plan Libre") {
+      roaming = 500;
     }
-    return costoTotal;
+    else {
+      System.out.println("Roaming no disponible para este plan.");
+    }
   }
-  
-  
-  
+  // Caso 2, roaming no libre, usuario debe decir cuantos mb quiere 
+  public boolean establecerRoaming(int mb) {
+    if (mb == 50 || mb == 100 || mb == 200) {
+      roaming += mb;
+      System.out.println("Roaming establecido correctamente");
+      return true;
+    } else {
+        return false;
+    }
+  }
+
+  public double getPrecioRoaming() {
+    if (roaming == 50) {
+      return 2990.0;
+    }
+    else if (roaming == 100) {
+      return 4990.0;
+    }
+    else if (roaming == 200) {
+      return 7990.0;
+    }
+    else {
+      return 0.0;
+    }
+  }
 
   // METODOS SETTER - GETTER
   public void setNombre(String nombre) {
@@ -56,6 +69,9 @@ public class PlanComun {
   public void setSms(int sms) {
     this.sms = sms;
   }
+  public void setRoaming(int roaming) {
+    this.roaming = roaming;
+  }
 
   public String getNombre() {
     return nombre;
@@ -72,7 +88,8 @@ public class PlanComun {
   public int getSms() {
     return sms;
   }
+  public int getRoaming() {
+    return roaming;
+  }
 }
-
-
 

@@ -1,5 +1,3 @@
-package com.mycompany.famax.mavenproject1;
-
 import java.io.*;
 import java.util.*;
 
@@ -9,22 +7,29 @@ public class Main {
     // HashMap para clientes CLAVE: RUT - VALOR: OBJETO CLIENTE
     Map<String, Cliente> clientes = new HashMap<>();
 
-    
     // ********* Clientes de Prueba *********
-    Cliente clienteTest = new Cliente("Alberto Perez", "1", "alberto.perez@gmail.com", 94724901);
-    PlanComun planTest1 = new PlanComun("Plan intermedio", 9000, 300, 2000, 600);
-    PlanComun planTest2 = new PlanComun("Plan libre", 15500, 0, 0, 0);
-    PlanComun planTest3 = new PlanComun("Plan libre", 15500, 0, 0, 0);
-    PlanComun planTest4 = new PlanComun("Plan libre", 15500, 0, 0, 0);
-    
+    Cliente clienteTest = new Cliente("Alberto Perez", "11736497-3", "alberto.perez@gmail.com", 94724901);
+    PlanComun planTest1 = new PlanComun("Plan intermedio", 9000, 300, 2000, 600, 500);
+    PlanComun planTest2 = new PlanComun("Plan libre", 15500, 0, 0, 0, 0);
+    PlanComun planTest3 = new PlanComun("Plan libre", 15500, 0, 0, 0, 0);
+    PlanComun planTest4 = new PlanComun("Plan libre", 15500, 0, 0, 0, 0);
+
     clienteTest.setPlan(planTest1);
     clienteTest.setPlan(planTest2);
     clienteTest.setPlan(planTest3);
     clienteTest.setPlan(planTest4);
-    clientes.put("1", clienteTest);
+    clientes.put("11736497-3", clienteTest);
+    // ***************************************
+    Cliente clienteTest2 = new Cliente("Juana Maria", "15883520-3", "juanamaria19@gmail.com", 921447569);
+    PlanComun planTest5 = new PlanComun("Plan basico", 7000, 10, 1000, 400, 0);
+
+    clienteTest2.setPlan(planTest5);
+    clientes.put("15883520-3", clienteTest2);
+    // ***************************************
+    Cliente clienteTest3 = new Cliente("Jose Luis", "1", "joseluis@gmail.com", 986234418);
+    clientes.put("1", clienteTest3);
     // ***************************************
 
-    
     while(true){
       // MENU PRINCIPAL
       System.out.println("1 - Insercion Manual de Clientes y servicios");
@@ -33,13 +38,14 @@ public class Main {
 
       BufferedReader lector = new BufferedReader(new InputStreamReader(System.in));
       int opcion = Integer.parseInt(lector.readLine());
+      System.out.println(" ");
 
       switch(opcion){
-        // INSERCION DE CLIENTES EN EL MAPA Y PLANES EN ARRAYLIST
+        // ----- INSERCION DE CLIENTES EN MAPA Y PLANES (+ ROAMING) EN ARRAYLIST -----
         case 1:
           System.out.println("1 - Crear nuevo Cliente ");
           System.out.println("2 - Agregar servicio a usuario existente");
-          
+
           int opcion2 = Integer.parseInt(lector.readLine());
 
           if(opcion2 == 1) {
@@ -56,16 +62,16 @@ public class Main {
             telefono = Integer.parseInt(telefonoStr);
 
             Cliente nuevoCliente = new Cliente(nombre, rut, correo, telefono);
-            
+
             clientes.put(rut, nuevoCliente); // Agregar cliente al mapa
             System.out.println("Cliente creado con exito");
-            
+
           } else if(opcion2 == 2) {
             while (true) {
               System.out.println("");
               System.out.println("Ingrese rut del cliente existente: ");
-              System.out.println("(o 0 para volver al menú principal)");
-              
+              System.out.println("(*) '0' para volver al menú principal");
+
               String rut = lector.readLine();
               if (rut.equals("0")){
                 break;
@@ -73,9 +79,10 @@ public class Main {
               Cliente clienteEncontrado = clientes.get(rut);
               if (clienteEncontrado != null) {
                 System.out.println("Cliente encontrado.");
-                System.out.println(" ");
-                System.out.println("Planes disponibles:");
+                System.out.println("");
+                System.out.println("[SERVICIOS DISPONIBLES: AGREGAR PLANES, ASIGNAR BOLSAS ROAMING]");
                 System.out.println(" "); 
+                System.out.println("Planes disponibles:");
                 System.out.println(" A) -----     PLAN BASICO: $7.000    -----");
                 System.out.println("      100 GB - 1.000 MINUTOS - 400 SMS");
                 System.out.println(" "); 
@@ -88,14 +95,16 @@ public class Main {
                 System.out.println(" D) -----     PLAN LIBRE: $15.500    -----");
                 System.out.println("   GB LIBRES - MINUTOS LIBRES - SMS LIBRES");
                 System.out.println(" ");
-                System.out.println("- Si es usuario nuevo, obtendrá un 5% de dcto. en su primer plan.");
-                System.out.println("- Por cada 3 planes contratados, recibirá un 10% de dcto. acumulable en el total de su compra.");
+                System.out.println("(*) Si es usuario nuevo, obtendrá un 5% de dcto. en el total de su primer plan.");
+                System.out.println("(*) Por cada 3 planes contratados, recibirá un 10% de dcto. acumulable en el total de su compra. (con tope del 30%)");
                 System.out.println(" ");
-                System.out.println("Plan seleccionado: ");
-                
-                PlanComun plan = new PlanComun(null, 0.0, 0, 0, 0);
 
+                // --- Asignacion de plan ---
+                PlanComun plan = new PlanComun(null, 0.0, 0, 0, 0, 0); // Instanciar plan vacío
+                
                 while (true){
+                  boolean planValido = false;
+                  System.out.println("Plan seleccionado: ");
                   String opcionPlan = lector.readLine();
                   switch(opcionPlan){
                     case "a":
@@ -105,6 +114,8 @@ public class Main {
                         plan.setGigas(100);
                         plan.setMinutos(1000);
                         plan.setSms(400);
+                        plan.setRoaming(0);
+                        planValido = true;
                       break;
                     case "b":
                     case "B":
@@ -113,6 +124,8 @@ public class Main {
                         plan.setGigas(300);
                         plan.setMinutos(2000);
                         plan.setSms(600);
+                        plan.setRoaming(0);
+                        planValido = true;
                       break;
                     case "c":
                     case "C":
@@ -121,6 +134,8 @@ public class Main {
                         plan.setGigas(700);
                         plan.setMinutos(0);
                         plan.setSms(900);
+                        plan.setRoaming(0);
+                        planValido = true;
                       break;
                     case "d":
                     case "D":
@@ -129,63 +144,120 @@ public class Main {
                         plan.setGigas(0);
                         plan.setMinutos(0);
                         plan.setSms(0);
+                        plan.establecerRoaming();
+                        planValido = true;
                       break;
                     default:
                       System.out.println("Opcion invalida, ingrese nuevamenteuna opción");
                       break;
                   }
+                  // --- Asignacion de roaming ---
+                  int mb;
+                  while(planValido){
+                    System.out.println("Bolsas de Roaming disponibles:");
+                    System.out.println(" "); 
+                    System.out.println(" -----    50 MB: $2.990   -----");
+                    System.out.println(" -----   100 MB: $4.990   -----");
+                    System.out.println(" -----   200 MB: $7.990   -----");
+                    System.out.println(" ");
+                    System.out.println("Desea agregar bolsa de roaming al plan seleccionado? (s/n): ");
+                    String opcionRoaming = lector.readLine();
+
+                    //validador opcion valida de S o N
+                    while(!opcionRoaming.equals("s") && !opcionRoaming.equals("S") && !opcionRoaming.equals("n") && !opcionRoaming.equals("N")) {
+                      System.out.println("Opcion invalida, ingrese nuevamente una opción");
+                      System.out.println("Desea agregar bolsa de roaming al plan seleccionado? (s/n): ");
+                      opcionRoaming = lector.readLine();
+                    }
+                    
+                    switch(opcionRoaming){
+                      case "s":
+                      case "S":
+                        System.out.println(" ");
+                        System.out.println("Ingrese cantidad de MB de bolsa de roaming: ");
+                        mb = Integer.parseInt(lector.readLine());
+                        while (true){
+                          if (plan.establecerRoaming(mb)){
+                            double totalPlanSinRoaming = plan.getPrecio();
+                            double totalPlanConRoaming = plan.getPrecioRoaming() + totalPlanSinRoaming;
+                            plan.setPrecio(totalPlanConRoaming); // actualizacion precio del plan con roaming incluido
+                            break;
+                          }
+                          else{
+                            System.out.println(" ");
+                            System.out.println("Cantidad de MB invalida, ingrese nuevamente: ");
+                            System.out.println("Bolsas de Roaming disponibles:");
+                            System.out.println(" "); 
+                            System.out.println(" -----    50 MB: $2.990   -----");
+                            System.out.println(" -----   100 MB: $4.990   -----");
+                            System.out.println(" -----   200 MB: $7.990   -----");
+                            System.out.println(" ");
+                            System.out.println("Ingrese cantidad de MB de bolsa de roaming: ");
+                            mb = Integer.parseInt(lector.readLine());
+                          }
+                        }
+                        break;
+                      case "n":
+                      case "N":
+                        System.out.println(" ");
+                        System.out.println("(No se ha seleccionado bolsa de roaming, volviendo a menu principal...)");
+                        System.out.println(" ");
+                        break;
+                    }
+
+                  // --- Definir y asignar descuento ---
                   double precioFinal;
                   int cantPlanes= clienteEncontrado.getListaPlanes().size() +1;
 
-                  // testeo feo duermanlo !!!!!!!!!!!!!!!!!!!!!
-                  System.out.println(cantPlanes);
-                  
                   if (cantPlanes == 1) {
                     precioFinal = clienteEncontrado.descuento(plan.getPrecio());
-
+                    System.out.println(" ");
                     System.out.println("¡Por ser usuario nuevo Usted ha recibido un descuento del 5% !");
                     System.out.println("Precio original: " + plan.getPrecio());
                     System.out.println("Precio con descuento: " + precioFinal);
                     plan.setPrecio(precioFinal); 
-                } else {
+                  } else if (cantPlanes >= 3){
                     precioFinal= clienteEncontrado.descuento(clienteEncontrado.getTotalSinDescuento(), cantPlanes);
-
-                    System.out.println("¡Cada 3 planes tendrás un descuento del 10%, el cual se acumula! ");
+                    System.out.println(" ");
+                    System.out.println("¡Cada 3 planes tendrás un descuento del 10%, el cual se acumula! (tope del 30%)");
                     System.out.println("Precio original: " + plan.getPrecio());
-                    //System.out.println("Precio con descuento: " + precioFinal);
-                }
-  
-                clienteEncontrado.setPlan(plan); // Agregar plan al arraylist del cliente
-                
-                double totalSinDesc = clienteEncontrado.getTotalSinDescuento();
-                System.out.println("");
-                System.out.println("MONTO TOTAL: " + totalSinDesc);
-                System.out.println("El porcentaje de descuento total es :"+ clienteEncontrado.getDctoTotal());                
-                double totalConDesc = clienteEncontrado.getTotalConDescuento();
-                System.out.println("Total con Descuento :" + totalConDesc);
-                
+                    System.out.println("Precio con descuento: " + precioFinal);
+                  }
+                  
+                  clienteEncontrado.setPlan(plan); // Agregar plan al arraylist del cliente
+
+                  // --- Mostrar carrito de compras ---
+                  double totalSinDesc = clienteEncontrado.getTotalSinDescuento();
+                  System.out.println("");
+                  System.out.println("MONTO TOTAL: " + totalSinDesc);
+                  System.out.println("DESCUENTO TOTAL: "+ (clienteEncontrado.getDctoTotal()) * 100 + "%");   
+                  double totalConDesc = clienteEncontrado.getTotalConDescuento();
+                  System.out.println("MONTO FINAL: " + totalConDesc);
+                  System.out.println("");
+                  break;  
+                  } // while roaming
                 break;
-                }
-              } 
-              else {
-                System.out.println(" Cliente no encontrado. Asegúrese de ingresar correctamente los datos.");
+                } // Opcion planes
               }
-            }
+              else {
+                System.out.println("Cliente no encontrado. Asegúrese de ingresar correctamente los datos.");
+              }
+            } // Menu principal
           }
           break;
-
-        // MOSTRAR SERVICIOS DE UN CLIENTE
+        // ----- MOSTRAR SERVICIOS DE UN CLIENTE -----
         case 2:
           while (true) {
             System.out.println("Ingrese rut del cliente existente: ");
-            System.out.println("(o 0 para volver al menú principal)");
-            
+            System.out.println("(*) '0' para volver al menú principal");
+
             String rut = lector.readLine();
             if (rut.equals("0")) {
               break;
             }
             Cliente clienteEncontrado = clientes.get(rut);
             if (clienteEncontrado != null) {
+              System.out.println("");
               System.out.println(" Cliente encontrado. Mostrando datos:");
               System.out.println("Nombre: " + clienteEncontrado.getNombre());
               System.out.println("Rut: " + clienteEncontrado.getRut());
@@ -196,39 +268,53 @@ public class Main {
               System.out.println("Servicios contratados: ");
               ArrayList<PlanComun> listaPlanes = clienteEncontrado.getListaPlanes();
               if (!listaPlanes.isEmpty()) {
-                //double sumaPrecios = 0.0;
                 for (int i = 0; i < listaPlanes.size(); i++) {
                   PlanComun plan = listaPlanes.get(i);
-
                   System.out.println("Nombre: " + plan.getNombre());
                   System.out.println("Precio: " + plan.getPrecio());
-                  System.out.println("Gigas: " + plan.getGigas());
-                  System.out.println("Minutos: " + plan.getMinutos());
-                  System.out.println("SMS: " + plan.getSms());
-                  System.out.println(" ");
                   
+                  System.out.print("Gigas: ");
+                  if (plan.getGigas() == 0){
+                    System.out.println("ilimitados");
+                  }else{
+                     System.out.println(plan.getGigas());
+                  }
+                  
+                  System.out.print("Minutos: ");
+                  if (plan.getMinutos() == 0){
+                    System.out.println("ilimitado");
+                    
+                  }else{
+                     System.out.println(plan.getMinutos());
+                  }
+                  
+                  System.out.print("SMS: ");
+                  if (plan.getMinutos() == 0){
+                    System.out.println("ilimitado");
+                  }else{
+                    System.out.println(plan.getMinutos());
+                  }
+                  
+                  System.out.println("MB Roaming: " + plan.getRoaming());
+                  System.out.println(" ");
                 }
-
-                double totalSinDesc = clienteEncontrado.getTotalSinDescuento();
-                System.out.println("MONTO TOTAL: " + totalSinDesc);
-
-                System.out.println("El porcentaje de descuento total es :"+ clienteEncontrado.getDctoTotal());
-                //double aPagarDesc = clienteEncontrado.descuento(aPagar, listaPlanes.size());
-                //System.out.println("DESCUENTO APLICADO: " + clienteEncontrado.getDctoTotal());
-                //System.out.println("MONTO FINAL: " + aPagarDesc);
                 
+                double totalSinDesc = clienteEncontrado.getTotalSinDescuento();
+                System.out.println("Total a pagar:");
+                System.out.println("MONTO TOTAL: " + totalSinDesc);
+                System.out.println("DESCUENTO TOTAL: "+ (clienteEncontrado.getDctoTotal()) * 100 + "%");
                 double totalConDesc = clienteEncontrado.getTotalConDescuento();
-                System.out.println(" Total con Descuento :" + totalConDesc);
-                        
+                System.out.println("MONTO FINAL: " + totalConDesc);
+                System.out.println(" ");
               } else  {
                 System.out.println("El cliente no posee planes contratados.");
               }
             }else {
-              System.out.println(" Cliente no encontrado. Asegúrese de ingresar correctamente los datos.");
+              System.out.println("Cliente no encontrado. Asegúrese de ingresar correctamente los datos.");
             }
           }
           break;
-        // SALIDA DEL PROGRAMA
+        // ----- SALIDA DEL PROGRAMA -----
         case 3:
           System.exit(0);
           break;
