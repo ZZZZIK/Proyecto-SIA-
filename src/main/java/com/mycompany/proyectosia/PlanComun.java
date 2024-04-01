@@ -1,5 +1,4 @@
 public class PlanComun {
-
   private String nombre;
   private double precio;
   private int gigas;
@@ -53,7 +52,7 @@ public class PlanComun {
     }
   }
 
-  // METODOS SETTER - GETTER
+  // METODOS SETTER
   public void setNombre(String nombre) {
     this.nombre = nombre;
   }
@@ -73,6 +72,7 @@ public class PlanComun {
     this.roaming = roaming;
   }
 
+  // METODOS GETTER
   public String getNombre() {
     return nombre;
   }

@@ -1,3 +1,4 @@
+
 import java.io.*;
 import java.util.*;
 
@@ -7,28 +8,55 @@ public class Main {
     // HashMap para clientes CLAVE: RUT - VALOR: OBJETO CLIENTE
     Map<String, Cliente> clientes = new HashMap<>();
 
+    // 
     // ********* Clientes de Prueba *********
+    //Creación de cliente
     Cliente clienteTest = new Cliente("Alberto Perez", "11736497-3", "alberto.perez@gmail.com", 94724901);
+    //Creación de planes de testeo 
     PlanComun planTest1 = new PlanComun("Plan intermedio", 9000, 300, 2000, 600, 500);
     PlanComun planTest2 = new PlanComun("Plan libre", 15500, 0, 0, 0, 0);
     PlanComun planTest3 = new PlanComun("Plan libre", 15500, 0, 0, 0, 0);
     PlanComun planTest4 = new PlanComun("Plan libre", 15500, 0, 0, 0, 0);
 
+    //Añadimos los planes al clientes
     clienteTest.setPlan(planTest1);
     clienteTest.setPlan(planTest2);
     clienteTest.setPlan(planTest3);
     clienteTest.setPlan(planTest4);
+    
+    //Añadimos el cliente test al mapa de clientes 
     clientes.put("11736497-3", clienteTest);
-    // ***************************************
+    
+    // *******************************************************************************
+    
+    //Creación de cliente
     Cliente clienteTest2 = new Cliente("Juana Maria", "15883520-3", "juanamaria19@gmail.com", 921447569);
+    //Creación de planes de testeo
     PlanComun planTest5 = new PlanComun("Plan basico", 7000, 10, 1000, 400, 0);
-
+    PlanComun planTest6 = new PlanComun("Plan libre", 15500, 0, 0, 0, 0);
+    
+    //Añadimos los planes al clientes
     clienteTest2.setPlan(planTest5);
+    clienteTest2.setPlan(planTest6);
+    
+    //Añadimos el cliente test al mapa de clientes 
     clientes.put("15883520-3", clienteTest2);
-    // ***************************************
+    
+    // ********************************************************************************
+    
+    //Creación de cliente
     Cliente clienteTest3 = new Cliente("Jose Luis", "1", "joseluis@gmail.com", 986234418);
+    PlanComun planTest7 = new PlanComun("Plan libre", 15500, 0, 0, 0, 0);
+    PlanComun planTest8 = new PlanComun("Plan basico", 7000, 10, 1000, 400, 0);
+    
+    //Añadimos los planes al clientes
+    clienteTest3.setPlan(planTest7);
+    clienteTest3.setPlan(planTest8);
+  
+    //Añadimos el cliente test al mapa de clientes 
     clientes.put("1", clienteTest3);
-    // ***************************************
+    
+    // *********************************************************************************
 
     while(true){
       // MENU PRINCIPAL
@@ -206,9 +234,11 @@ public class Main {
                     }
 
                   // --- Definir y asignar descuento ---
-                  double precioFinal;
+                  double precioFinal=0.0;
                   int cantPlanes= clienteEncontrado.getListaPlanes().size() +1;
 
+                  clienteEncontrado.setPlan(plan); // Agregar plan al arraylist del cliente
+                  
                   if (cantPlanes == 1) {
                     precioFinal = clienteEncontrado.descuento(plan.getPrecio());
                     System.out.println(" ");
@@ -217,21 +247,26 @@ public class Main {
                     System.out.println("Precio con descuento: " + precioFinal);
                     plan.setPrecio(precioFinal); 
                   } else if (cantPlanes >= 3){
-                    precioFinal= clienteEncontrado.descuento(clienteEncontrado.getTotalSinDescuento(), cantPlanes);
+                    
+                    //precioFinal= clienteEncontrado.descuento(clienteEncontrado.getTotalSinDescuento(),cantPlanes);
                     System.out.println(" ");
                     System.out.println("¡Cada 3 planes tendrás un descuento del 10%, el cual se acumula! (tope del 30%)");
                     System.out.println("Precio original: " + plan.getPrecio());
-                    System.out.println("Precio con descuento: " + precioFinal);
+                    //System.out.println("Precio del plan con descuento: " + precioFinal);
                   }
                   
-                  clienteEncontrado.setPlan(plan); // Agregar plan al arraylist del cliente
+                  //clienteEncontrado.setPlan(plan); // Agregar plan al arraylist del cliente
 
                   // --- Mostrar carrito de compras ---
                   double totalSinDesc = clienteEncontrado.getTotalSinDescuento();
                   System.out.println("");
                   System.out.println("MONTO TOTAL: " + totalSinDesc);
-                  System.out.println("DESCUENTO TOTAL: "+ (clienteEncontrado.getDctoTotal()) * 100 + "%");   
+
+                  //Llamamos a la funcion que obtiene el descuento total y tambien ayuda para obtener el %.
                   double totalConDesc = clienteEncontrado.getTotalConDescuento();
+                  
+                  
+                  System.out.println("DESCUENTO TOTAL: "+ (clienteEncontrado.getDctoTotal()) * 100 + "%");
                   System.out.println("MONTO FINAL: " + totalConDesc);
                   System.out.println("");
                   break;  

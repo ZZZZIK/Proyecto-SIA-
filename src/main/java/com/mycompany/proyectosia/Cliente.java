@@ -33,15 +33,14 @@ public class Cliente {
 
   // Descuento cliente del 10% del total que ya posee 3 planes o más 
   public double descuento(double totalApagar,int cant_planes){
-
+      //System.out.println("cant planes ; "+cant_planes);
+      //System.out.println("tot a pagar "+totalApagar);
     if (this.dctoTotal >= 0.3) {
       System.out.println("Limite del 30% alcanzado.");
       double precioFinal=totalApagar-(totalApagar*0.3);
       this.dctoTotal =0.3;
       return precioFinal; // No se aplica más descuento
     }
-
-
     int acumDcto = cant_planes / 3;
 
     double precioDescuento = totalSinDescuento * (0.1 * acumDcto);
@@ -54,8 +53,9 @@ public class Cliente {
   }
 
   
-
-  // METODOS SETTER - GETTER
+   //**************************************************************
+  // METODOS SETTER
+  
   public void setNombre(String nombre) {
     this.nombre = nombre;
   }
@@ -71,12 +71,13 @@ public class Cliente {
   public void setNumTelefono(int numTelefono) {
     this.numTelefono = numTelefono;
   }
-
-  public void setPlan(PlanComun plan) {
-      listaPlanes.add(plan);
+    
+  public void setDctoTotal(double dctoTotal) {
+    this.dctoTotal = dctoTotal;
   }
 
-    //double totalAPagar
+ 
+  // Setter de variable de instancia totalSinDescuento
   public void setTotalAPagar() {
     int cantPlanes = listaPlanes.size();
     double sumTotalAPagar=0;
@@ -87,36 +88,19 @@ public class Cliente {
     totalSinDescuento = sumTotalAPagar;
   }
 
-
-  public double getTotalSinDescuento(){
-    setTotalAPagar();
-    return totalSinDescuento;
+  public void setTotalConDescuento(double totalConDescuento){
+     this.totalConDescuento=totalConDescuento;
+  }
+    
+  // SETTER DEL ARRAYLIST listaPlanes
+  public void setPlan(PlanComun plan) {
+      listaPlanes.add(plan);
   }
 
-
-  public double getTotalConDescuento(){
-    double totalConDescuento = descuento(getTotalSinDescuento(),listaPlanes.size());
-    this.totalConDescuento=totalConDescuento;
-    return totalConDescuento;
-  }
-
-  public double getDctoTotal(){
-      return dctoTotal;
-  }
-  /*
-  public double getDctoTotal(){
-    double CostoFinal= descuento(getTotalAPagar(),listaPlanes.size());
-    return dctoTotal;
-  }
-
-*/
-
-  public void setDctoTotal(double dctoTotal) {
-    this.dctoTotal = dctoTotal;
-  }
-
-
-
+  
+  //**************************************************************
+  // METODOS GETTER
+  
   public String getNombre() {
     return nombre;
   }
@@ -133,9 +117,23 @@ public class Cliente {
     return numTelefono;
   }
 
+  public double getDctoTotal(){
+      return dctoTotal;
+  }
+  
+  public double getTotalSinDescuento(){
+    setTotalAPagar();
+    return totalSinDescuento;
+  }
+  
+  public double getTotalConDescuento(){
+    double totalConDescuento = descuento(getTotalSinDescuento(),listaPlanes.size());
+    this.totalConDescuento=totalConDescuento;
+    return totalConDescuento;
+  }
+  
   public ArrayList<PlanComun> getListaPlanes() {
     return listaPlanes;
   }
-
 
 }
