@@ -111,9 +111,14 @@ public class Page3 extends javax.swing.JPanel {
         return txtPane;
     }
     
-     public JButton getBtnBuscarC() {
+    public JButton getBtnBuscarC() {
         return btnBuscarC;
     }
+     
+    public void setLblstatusbusqueda(String msg){
+        lblstatusbusqueda.setText(msg);
+    }
+    
      
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel bg;

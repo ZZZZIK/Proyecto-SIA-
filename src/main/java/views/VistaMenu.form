@@ -42,13 +42,12 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                          <Component id="pageBtn2" max="32767" attributes="0"/>
-                          <Component id="pageBtn1" max="32767" attributes="0"/>
-                          <Component id="pageBtn3" max="32767" attributes="0"/>
-                      </Group>
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="pageBtn2" alignment="1" max="32767" attributes="0"/>
+                      <Component id="pageBtn1" alignment="1" max="32767" attributes="0"/>
+                      <Component id="pageBtn3" alignment="1" max="32767" attributes="0"/>
                       <Component id="home" min="-2" pref="51" max="-2" attributes="0"/>
+                      <Component id="pageBtn4" alignment="0" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="content" min="-2" max="-2" attributes="0"/>
@@ -67,6 +66,8 @@
                   <Component id="pageBtn2" min="-2" pref="40" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="pageBtn3" min="-2" pref="40" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="pageBtn4" min="-2" pref="40" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
               <Group type="102" alignment="0" attributes="0">
@@ -122,6 +123,14 @@
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="homeActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="pageBtn4">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Mostrar Clientes"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="pageBtn4ActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>

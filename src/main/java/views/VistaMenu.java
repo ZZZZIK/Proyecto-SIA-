@@ -1,17 +1,19 @@
 package views;
 import java.awt.BorderLayout;
+import javax.swing.JButton;
 
 public class VistaMenu extends javax.swing.JFrame {
     
     private Page1 p1;
     private Page2 p2;
     private Page3 p3;
+    private Page4 p4;
     
     public VistaMenu() {
         initComponents();
     }
     
-    public VistaMenu(Page1 p1,Page2 p2,Page3 p3) {
+    public VistaMenu(Page1 p1,Page2 p2,Page3 p3,Page4 p4) {
         initComponents();
         HomePage home= new HomePage();
         home.setSize(675,550);
@@ -25,6 +27,7 @@ public class VistaMenu extends javax.swing.JFrame {
         this.p1=p1;
         this.p2=p2;
         this.p3=p3;
+        this.p4=p4;
     }
 
     /**
@@ -42,6 +45,7 @@ public class VistaMenu extends javax.swing.JFrame {
         pageBtn2 = new javax.swing.JButton();
         content = new javax.swing.JPanel();
         home = new javax.swing.JButton();
+        pageBtn4 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -87,18 +91,25 @@ public class VistaMenu extends javax.swing.JFrame {
             }
         });
 
+        pageBtn4.setText("Mostrar Clientes");
+        pageBtn4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pageBtn4ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout bgLayout = new javax.swing.GroupLayout(bg);
         bg.setLayout(bgLayout);
         bgLayout.setHorizontalGroup(
             bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(bgLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(pageBtn2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(pageBtn1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(pageBtn3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(home, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(pageBtn2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(pageBtn1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(pageBtn3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(home, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(pageBtn4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(content, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -114,6 +125,8 @@ public class VistaMenu extends javax.swing.JFrame {
                 .addComponent(pageBtn2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(pageBtn3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(pageBtn4, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(bgLayout.createSequentialGroup()
                 .addComponent(content, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -137,6 +150,7 @@ public class VistaMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_pageBtn1ActionPerformed
 
     private void pageBtn2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pageBtn2ActionPerformed
+        //Page2 p2=new Page2();
         
         p2.setSize(675,550);
         p2.setLocation(0,0);
@@ -168,6 +182,17 @@ public class VistaMenu extends javax.swing.JFrame {
         content.revalidate();
         content.repaint();
     }//GEN-LAST:event_homeActionPerformed
+
+    private void pageBtn4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pageBtn4ActionPerformed
+        
+        p4.setSize(675,550);
+        p4.setLocation(0,0);
+        
+        content.removeAll();
+        content.add(p4, BorderLayout.CENTER);
+        content.revalidate();
+        content.repaint();
+    }//GEN-LAST:event_pageBtn4ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -203,6 +228,16 @@ public class VistaMenu extends javax.swing.JFrame {
             }
         });
     }
+    public JButton getpageBtn4() {
+        return pageBtn4;
+    }
+    
+    
+    
+    
+    
+    
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel bg;
@@ -211,5 +246,6 @@ public class VistaMenu extends javax.swing.JFrame {
     private javax.swing.JButton pageBtn1;
     private javax.swing.JButton pageBtn2;
     private javax.swing.JButton pageBtn3;
+    private javax.swing.JButton pageBtn4;
     // End of variables declaration//GEN-END:variables
 }

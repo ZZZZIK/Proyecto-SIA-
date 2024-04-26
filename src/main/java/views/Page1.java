@@ -162,7 +162,7 @@ public class Page1 extends javax.swing.JPanel {
         return Integer.parseInt(txtNum.getText());
     }
     
-    
+    /*
     public void setStatus(boolean estado){
         if(estado){
             lblstatus.setText("Se ha creado correctamente");
@@ -173,7 +173,8 @@ public class Page1 extends javax.swing.JPanel {
             return;
         }
     }
-    
+    */
+
     public JButton getBtnCrear() {
         return BtnCrear;
     }

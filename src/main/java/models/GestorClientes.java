@@ -1,52 +1,148 @@
-
 package models;
 import java.util.*;
+import controllers.*;
 
 public class GestorClientes {
     //Esta Clase se encargará de poner los clientes en su respectivo mapa
-    
-    
     private HashMap<String, Cliente> clientes;
-    private ArrayList<String> clientesCopia;
+    // ArrayList que posee los clientes filtrados
+    private ArrayList<Cliente> clientesConNPlanes;
     
+    // ArrayList que posee todos los clientes
+    private ArrayList<Cliente> clientesLista;
+    
+    
+    // Constructor 
     public GestorClientes() {
         clientes = new HashMap<>();
-        clientesCopia= new ArrayList<String>();
+        clientesConNPlanes = new ArrayList<>();
+        clientesLista = new ArrayList<>();
+        
     }
     
-    public void eliminarCliente(String rut) {
-        this.clientes.remove(rut);
-    }
     
-    public boolean agregarCliente(Cliente cliente) {
-        //Añade cliente al mapa
-        clientes.put(cliente.getRut(), cliente);
-        
-        
-        //Añade rut cliente a la copia
-        clientesCopia.add(cliente.getRut());
-
-        /*Impresion por consola de los clientes registrados        
-        for (int i=0;i<clientesCopia.size();i++){
-            System.out.println(clientesCopia.get(i));
+    
+    // ******************************Métodos Clientes************************************************
+    public Boolean agregarCliente(Cliente cliente) throws RutRepetidoException {
+        if (!clientes.containsKey(cliente.getRut())) {
+            clientes.put(cliente.getRut(), cliente);
+            
+            return true;
+        } else {
+            throw new RutRepetidoException();
+            
         }
-        */
-        
-        return true;
     }
     
-    public Cliente buscarCliente(String rut) {
+    public Cliente buscarCliente(String rut) throws ClienteInexistenteException {
         if (clientes.containsKey(rut)) {
             return clientes.get(rut);
+        } else {
+            throw new ClienteInexistenteException();
         }
-        else return null;
     }
     
-    public Cliente getCliente(String rut) {
-        return this.clientes.get(rut);
+    public void eliminarCliente(String rut) throws ClienteInexistenteException {
+        if (clientes.containsKey(rut)) {
+            clientes.remove(rut);
+        } else {
+            throw new ClienteInexistenteException();
+        }
     }
+    
+    
+    //******************************Métodos Planes************************************************
+    
+    public void agregarPlan(String rut, PlanComun plan) throws ClienteInexistenteException {
+        Cliente cliente = buscarCliente(rut);
+        cliente.setPlan(plan);
+    }
+    
+    public boolean buscarPlanPorNombre(String rut, String nombrePlan) throws ClienteInexistenteException, PlanInexistenteException {
+        Cliente cliente = buscarCliente(rut);
+        ArrayList<PlanComun> planLista = cliente.getListaPlanes();
+        for (int i = 0; i < planLista.size(); i++) {
+            PlanComun plan = planLista.get(i);
+            if (plan.getNombre().equals(nombrePlan)) {
+                return true;
+            }
+        }
+        throw new PlanInexistenteException();
+    }
+    
+    public void eliminarPlanDeCliente(String rut, String nombrePlan) throws ClienteInexistenteException, PlanInexistenteException {
+        Cliente cliente = buscarCliente(rut);
+        boolean planEncontrado = false;
+        ArrayList<PlanComun> planLista = cliente.getListaPlanes();
+        for (int i = 0; i < planLista.size(); i++) {
+            PlanComun plan = planLista.get(i);
+            if (plan.getNombre().equals(nombrePlan)) {
+                planEncontrado = true;
+                planLista.remove(i);
+                break;
+            }
+        }
+        if (!planEncontrado) {
+            throw new PlanInexistenteException();
+        }
+    }
+    /*
+    ----- SUBCONJUNTO FILTRADO POR CRITERIO -----
+    // Obtiene una lista de todos los clientes con cantidad de planes planes == numero ingresado 
+    por el usuario.
+    */
+    
+    public ArrayList obtenerClientesPorNPlanes(int cantPlanesMin) {
+        clientesConNPlanes.clear(); // para limpiar la lista cada vez que se ejecute este metodo
+
+        ArrayList<Cliente> listaClientes = new ArrayList<>(clientes.values()); // pasar coleccion de clientes del mapa a lista
+        for (int i = 0; i < listaClientes.size(); i++) {
+            Cliente cliente = listaClientes.get(i);
+            
+            if (cliente.getSizePlan() < cantPlanesMin) {
+                clientesConNPlanes.add(cliente);
+            }
+        }
+        return clientesConNPlanes; // posible error: LISTA VACÍA. ***aplicar condicion en donde se vaya a utilizar: if(listaRetornada.isEmpty()){ ... }
+    }
+    
+    /*
+    public ArrayList actualizarListaClientes() {
+        clientesLista.clear();
+        clientesLista.addAll(clientes.values());
+        return clientesLista;
+    }
+    */
+    
+    public void actualizarListaClientes() {
+        ArrayList aux = new ArrayList<>(clientes.values());
+        if(clientesLista.size() != aux.size()) {
+            clientesLista.clear();
+            clientesLista.addAll(clientes.values());
+        }
+    }
+    
+    public Cliente posicionClienteLista(int i) {
+        actualizarListaClientes();
+        return clientesLista.get(i);
+    }
+
+    
+    public int largolst(){
+        return clientes.values().size();
+    }
+    
     
     
 }
+    
+    
+    
+    
+    
+    
+    
+    
+ 
 
    
