@@ -1,5 +1,6 @@
 package views;
 
+import javax.swing.JButton;
 import javax.swing.JTextPane;
 
 
@@ -23,7 +24,7 @@ public class Page4 extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         textPaneC = new javax.swing.JTextPane();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTextPane2 = new javax.swing.JTextPane();
+        txtPaneFiltro = new javax.swing.JTextPane();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         txtCant = new javax.swing.JTextField();
@@ -34,7 +35,7 @@ public class Page4 extends javax.swing.JPanel {
 
         jScrollPane1.setViewportView(textPaneC);
 
-        jScrollPane2.setViewportView(jTextPane2);
+        jScrollPane2.setViewportView(txtPaneFiltro);
 
         jLabel1.setText("Clientes actuales en el sistema: ");
 
@@ -112,7 +113,17 @@ public class Page4 extends javax.swing.JPanel {
         return textPaneC;
     }
    
+    public String getTextCant(){
+        return txtCant.getText();
+    }
     
+    public JTextPane getTextPaneFiltro(){
+        return txtPaneFiltro;
+    }
+    
+    public JButton getBtnBuscarC() {
+        return btnBuscar;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel bg;
@@ -123,8 +134,8 @@ public class Page4 extends javax.swing.JPanel {
     private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextPane jTextPane2;
     private javax.swing.JTextPane textPaneC;
     private javax.swing.JTextField txtCant;
+    private javax.swing.JTextPane txtPaneFiltro;
     // End of variables declaration//GEN-END:variables
 }

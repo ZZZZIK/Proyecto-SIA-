@@ -31,10 +31,11 @@ public class ControladorGlobal implements MouseListener{
     boolean planLibre=false;
         
     
-    
-    
     public ControladorGlobal() {
+        //Creamos el modelo
         gestor = new GestorClientes();
+        //agregar persistencia de archivos
+        gestor.cargaDatos();
         
         p1=new Page1();
         p2=new Page2();
@@ -49,42 +50,27 @@ public class ControladorGlobal implements MouseListener{
         this.p2.getbtnPlanIntermedio().addMouseListener(this);
         this.p2.getbtnPlanAvanzado().addMouseListener(this);
         this.p2.getbtnPlanLibre().addMouseListener(this);
+
         //Detección si apretaron boton agregar Plan
         this.p2.getbtnAgregar().addMouseListener(this);
+
+        //Detección si apretaron boton eliminar Plan
+        this.p2.getbtnEliminar().addMouseListener(this);
         
         
         this.p3.getBtnBuscarC().addMouseListener(this);
         
+        this.p4.getBtnBuscarC().addMouseListener(this);
+        
         ventanaPrincipal=new VistaMenu(p1,p2,p3,p4);
-        ventanaPrincipal.setVisible(true);
+        ventanaPrincipal.setVisible(true);   
+        
         this.ventanaPrincipal.getpageBtn4().addMouseListener(this);
+        this.ventanaPrincipal.getSalirbtn().addMouseListener(this);
         
         //Falta añadir escucha de boton p4
-
     }
-    
-    /*
-     public JRadioButton getbtnPlanBasico() {
-        return btnPlanBasico;
-    }
-    public JRadioButton getbtnPlanIntermedio() {
-        return btnPlanIntermedio;
-    }
-    public JRadioButton getbtnPlanAvanzado() {
-        return btnPlanAvanzado;
-    }
-    
-    public JRadioButton getbtnPlanLibre() {
-        return btnPlanLibre;
-    }
-    public JButton getbtnAgregar() {
-       return btnAgregar;
-    }
-    
-    */
-    
-    
-    
+      
     public void mouseClicked(MouseEvent e) {
         
         //Con condicionales se fijan las acciones para cada botón.
@@ -94,66 +80,229 @@ public class ControladorGlobal implements MouseListener{
         }
         //***************************************************
         // Detección que boton de plan se presionó
+        
         if (e.getSource() == p2.getbtnPlanBasico()){
-            planBasico=true;
+            
         }
         if (e.getSource() == p2.getbtnPlanIntermedio()){
-            planIntermedio=true;
+           
         }
         if (e.getSource() == p2.getbtnPlanAvanzado()){
-            planAvanzado=true;
+            
         }
         if (e.getSource() == p2.getbtnPlanLibre()){
-            planLibre=true;
+           
         }
         
+        
+        
+        // Cuando se presione agregar planes...
         if (e.getSource() == p2.getbtnAgregar()){
+            //Actualización de botones
+            botonesSeleccionados();
             agregarPlanCliente();
-            //Limpieza
+            
+            //Limpieza botones
             p2.deseleccionarRadioButtons();
         }
+        
+        // Cuando se presione eliminar planes...
+        if (e.getSource() == p2.getbtnEliminar()){
+            //Actualización de botones
+            botonesSeleccionados();
+            eliminarPlanCliente();
+            
+            //Limpieza botones
+            p2.deseleccionarRadioButtons();
+        }
+        
         //****************************************************
         if (e.getSource() == p3.getBtnBuscarC()) {
             mostrarDatos();
         }
-        if (e.getSource()== ventanaPrincipal.getpageBtn4()){
-            mostrarCliente();
+        if (e.getSource() == p4.getBtnBuscarC()){
+            mostrarFiltro();
         }
-          
+        
+        
+        
+        if (e.getSource()== ventanaPrincipal.getpageBtn4()){
+            mostrarClientes();
+        }
+        
+        
+        // Cuando se presiona el boton de salir del programa...
+        if (e.getSource()== ventanaPrincipal.getSalirbtn()){
+            //Escritura persistencia
+            gestor.guardarDatos();
+            //Escritura reporte
+            System.exit(0);
+            
+        }
+        
+        
+        
+        //p5 mostrarDatos();   
     }
+    
+    public void botonesSeleccionados(){
+        if(p2.getbtnPlanBasico().isSelected()){
+            planBasico=true;
+        }
+        if(p2.getbtnPlanIntermedio().isSelected()){
+            planIntermedio=true;
+        }
+        if(p2.getbtnPlanAvanzado().isSelected()){
+            planAvanzado=true;
+        }
+        if(p2.getbtnPlanLibre().isSelected()){
+            planLibre=true;
+        }
+    }
+    
+    
+    public void eliminarPlanCliente(){
+        String msg="";
+        String rut=p2.getRut();
+        try{
+            //public void eliminarPlanDeCliente(String rut, String nombrePlan) 
+            if(planBasico){
+                gestor.eliminarPlanDeCliente(rut,"Plan Basico");
+                System.out.println("del basico ");
+                planBasico=false;
+            }
+            if(planIntermedio){
+                gestor.eliminarPlanDeCliente(rut,"Plan Intermedio");
+                System.out.println("del interm ");
+                planIntermedio=false;
+            }
+            if(planAvanzado){
+                gestor.eliminarPlanDeCliente(rut,"Plan Avanzado");
+                System.out.println("del avanzao ");
+                planAvanzado=false;
+            }
+            if(planLibre){
+                gestor.eliminarPlanDeCliente(rut,"Plan Libre");
+                System.out.println("del libre ");
+                planLibre=false;
+            }
+        }catch(ClienteInexistenteException e){
+            msg="No existe el Cliente";
+        }
+        catch(PlanInexistenteException e){
+            msg="Plan no encontrado";
+        }
+        p2.setStatus(msg);
+    }
+    
+    public void mostrarFiltro(){
+        p4.getTextPaneFiltro().setText("");
+        p4.getTextPaneFiltro().setEditable(false);
+        StyledDocument doc = p4.getTextPaneFiltro().getStyledDocument();
+        StyleContext context = new StyleContext();
+        // build a style
+        Style style = context.addStyle("test", null);
+        // set some style properties
+        StyleConstants.setForeground(style, Color.BLACK);
+        
+        // Recibimos el num dado por el usuario para el filtro
+        int cantPlanesFiltro=Integer.parseInt(p4.getTextCant());
+
+        // bandera si esta vacio o no 
+        int cont=0;
+        
+        try{
+            for(int i=gestor.largolst()-1;i>=0;i--){
+                Cliente cliente = (Cliente)gestor.obtenerClientesPorNPlanes(cantPlanesFiltro,i);
+                
+                if (cliente!=null){
+                    String nombre=cliente.getNombre();
+                    doc.insertString(0,nombre+"\n",style);
+                    cont++;
+                }
+            }
+            if (cont==0){
+                doc.insertString(0,"La lista se encuentra vacia\n",style);
+            }
+        }catch(Exception e){
+        
+        }  
+    }
+    
+    
+    
     
     
  
     
     public void agregarPlanCliente(){
+        String msg="";
         String rut=p2.getRut();
         try{
+            
+            
             if(planBasico){
-                gestor.agregarPlan(rut, new PlanBasico());
+                
+                PlanComun plan= new PlanComun("Plan Basico",7000,100,1000,400,0);
+                
+                gestor.agregarPlan(rut, plan);
+                
                 System.out.println("basico ");
                 planBasico=false;
             }
             if(planIntermedio){
-                gestor.agregarPlan(rut, new PlanIntermedio());
+                
+                PlanComun plan= new PlanComun("Plan Intermedio",9000,300,2000,600,0);
+                gestor.agregarPlan(rut, plan);
+                
                 System.out.println("interm ");
                 planIntermedio=false;
             }
             if(planAvanzado){
-                gestor.agregarPlan(rut, new PlanAvanzado());
+                
+                PlanComun plan= new PlanComun("Plan Avanzado",11500,700,1000000,900,0);
+                gestor.agregarPlan(rut, plan);
+                
                 System.out.println("avanzao ");
                 planAvanzado=false;
             }
             if(planLibre){
-                gestor.agregarPlan(rut, new PlanLibre());
+                
+                PlanComun plan= new PlanComun("Plan Libre",1000000,1000000,1000000,1000000, 0);
+                // Uso de sobrecarga roaming
+                plan.establecerRoaming();
+                
+                gestor.agregarPlan(rut, plan);
+                
+                
                 System.out.println("libre ");
                 planLibre=false;
             }
-        }catch(ClienteInexistenteException e){
             
-            p2.setStatus("No existe el Cliente");
+        /*
+            Plan Basico;7000;100;1000;400;0
+            Plan Intermedio;9000;300;2000;600;0
+            Plan Avanzado;11500;700;1000000;900;0
+            Plan Libre;1000000;1000000;1000000;1000000;0
+            PlanComun plan=
+            
+            gestor.agregarPlan(rut, )
+            
+        */    
+            
+            
+            
+        }catch(ClienteInexistenteException e){
+            msg="No existe el Cliente";
+        }catch(Exception e){
+            msg="Plan no seleccionado";
         }
         
+        p2.setStatus(msg);
+   
     }
+    
+    
     
     
     
@@ -166,19 +315,28 @@ public class ControladorGlobal implements MouseListener{
         String correo=p1.getCorreo();
         int num=p1.getNum();
        
+        String msg="";
+        
         // Se crea el Cliente
         Cliente cliente = new Cliente(nombre, rut, correo, num);
 
         try {    
             gestor.agregarCliente(cliente);
             
+            msg="Se ha agregador correctamente.";
         } catch (RutRepetidoException ex) {
-            //Exepción para clientes que ya existen.
-            System.out.println("Error al agregar cliente");
-            //estado= false;
-        } 
+            
+        //Exepción para clientes que ya existen.
+           
+            msg="Error, Cliente ya existe";
+     
+            
+        } catch (Exception e){
+            p1.setStatus("Error");
+          
+        }
         
-        //p1.setStatus(estado);
+        p1.setStatus(msg);
     }
     
 
@@ -223,7 +381,8 @@ public class ControladorGlobal implements MouseListener{
     
     
     
-    public void mostrarCliente(){
+    
+    public void mostrarClientes(){
         p4.getTextPane().setText("");
         p4.getTextPane().setEditable(false);
         StyledDocument doc = p4.getTextPane().getStyledDocument();
@@ -234,9 +393,7 @@ public class ControladorGlobal implements MouseListener{
         StyleConstants.setForeground(style, Color.BLACK);
         
 
-        //for(int i=0;i<gestor.largolst();i++){
-        //    Cliente cliente=(Cliente)gestor.posicionClienteLista(i);    
-        //}
+        
         try{
             if (gestor.largolst()==0){
                 doc.insertString(0,"La lista se encuentra vacia\n",style);

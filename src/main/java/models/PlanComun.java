@@ -23,7 +23,7 @@ public class PlanComun {
   //caso 1, roaming libre , usuario tiene roaming ilimitado y no tiene que ingresar nada
   public void establecerRoaming() {
     if (nombre == "Plan Libre") {
-      roaming = 500;
+      roaming = 1000000;
     }
     else {
       System.out.println("Roaming no disponible para este plan.");
