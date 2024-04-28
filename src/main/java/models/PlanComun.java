@@ -1,6 +1,6 @@
 
 package models;
-
+import controllers.*;
 public class PlanComun {
   private String nombre;
   private double precio;
@@ -8,15 +8,19 @@ public class PlanComun {
   private int minutos;
   private int sms;
   private int roaming;
+  private String primerDesc;
+  
+    
 
   // CONSTRUCTOR
-  public PlanComun(String nombre, double precio, int gigas, int minutos, int sms, int roaming) {
+  public PlanComun(String nombre, double precio, int gigas, int minutos, int sms, int roaming, String primerDesc) {
     this.nombre = nombre;
     this.precio = precio;
     this.gigas = gigas;
     this.minutos = minutos;
     this.sms = sms;
     this.roaming = roaming;
+    this.primerDesc=primerDesc;
   }
 
   // METODOS
@@ -30,28 +34,29 @@ public class PlanComun {
     }
   }
   // Caso 2, roaming no libre, usuario debe decir cuantos mb quiere 
-  public boolean establecerRoaming(int mb) {
-    if (mb == 50 || mb == 100 || mb == 200) {
+  public boolean establecerRoaming(int mb) throws RoamingException{
+    if (mb == 50 || mb == 100 || mb == 200 || mb ==0) {
       roaming += mb;
+      setPrecioRoaming();
       System.out.println("Roaming establecido correctamente");
       return true;
     } else {
-        return false;
+        throw new RoamingException();
     }
   }
 
-  public double getPrecioRoaming() {
+  public void setPrecioRoaming() {
     if (roaming == 50) {
-      return 2990.0;
+      precio+= 2990.0;
     }
     else if (roaming == 100) {
-      return 4990.0;
+      precio+= 4990.0;
     }
     else if (roaming == 200) {
-      return 7990.0;
+      precio+= 7990.0;
     }
     else {
-      return 0.0;
+      precio+= 0.0;
     }
   }
 
@@ -93,6 +98,9 @@ public class PlanComun {
   }
   public int getRoaming() {
     return roaming;
+  }
+  public String getPrimerDesc(){
+    return primerDesc;
   }
 }
 

@@ -9,7 +9,9 @@ public class Cliente {
   private int numTelefono;
   private double dctoTotal;
   private double totalSinDescuento;
-  //private double totalConDescuento;
+  private double totalConDescuento;
+  private boolean vip;
+  
   private ArrayList<PlanComun> listaPlanes;
 
   
@@ -22,35 +24,43 @@ public class Cliente {
     this.numTelefono = numTelefono;
     this.dctoTotal = 0.0;
     this.totalSinDescuento = 0.0;
-    //this.totalConDescuento = 0.0;
+    this.totalConDescuento = 0.0;
     listaPlanes = new ArrayList<PlanComun>();
+    vip=false;
   }
 
   // Descuento para cliente nuevo 5%
   public double descuento(double montoPrimerPlan){
     double precioDcto = montoPrimerPlan * 0.05;
     double precioFinal = montoPrimerPlan - precioDcto;
-    this.dctoTotal = 0.05;
+    //this.dctoTotal=0.05;
     return precioFinal;
   }
 
   // Descuento cliente del 10% del total que ya posee 3 planes o más 
   
   public double descuento(double totalApagar,int cant_planes){
-      System.out.println("cant planes ; "+cant_planes);
-      System.out.println("tot a pagar "+totalApagar);
-    if (this.dctoTotal >= 0.3) {
+  
+    if(cant_planes<3){
+        System.out.println("cant planes ; "+cant_planes);
+        System.out.println("tot a pagar "+totalApagar);
+        return totalApagar;
+    }  
+    
+    if (cant_planes>=9) {
       System.out.println("Limite del 30% alcanzado.");
       double precioFinal=totalApagar-(totalApagar*0.3);
       this.dctoTotal =0.3;
       return precioFinal; // No se aplica más descuento
     }
     int acumDcto = cant_planes / 3;
-
+    
+    System.out.println(acumDcto);
     double precioDescuento = totalSinDescuento * (0.1 * acumDcto);
+    //double precioDescuento = totalSinDescuento * (0.1 * acumDcto);
     double precioFinal = totalSinDescuento - precioDescuento;
     this.dctoTotal = (0.1 * acumDcto);
-
+    System.out.println(this.dctoTotal);
     //guardamos el total a pagar en el cliente
     this.totalSinDescuento = precioFinal;
     return precioFinal;
@@ -82,8 +92,6 @@ public class Cliente {
 
  
   // Setter de variable de instancia totalSinDescuento
-  
-  /*
   public void setTotalAPagar() {
     int cantPlanes = listaPlanes.size();
     double sumTotalAPagar=0;
@@ -94,10 +102,14 @@ public class Cliente {
     totalSinDescuento = sumTotalAPagar;
   }
   
+  public void setTotalSinDesc(double total){
+      this.totalSinDescuento=total;
+  }
+  
   public void setTotalConDescuento(double totalConDescuento){
      this.totalConDescuento=totalConDescuento;
   }
-  */
+  
   // SETTER DEL ARRAYLIST listaPlanes
   
   
@@ -129,9 +141,9 @@ public class Cliente {
       return dctoTotal;
   }
   
-  /*
+ 
   public double getTotalSinDescuento(){
-    setTotalAPagar();
+    //setTotalAPagar();
     return totalSinDescuento;
   }
   
@@ -141,7 +153,7 @@ public class Cliente {
     this.totalConDescuento=totalConDescuento;
     return totalConDescuento;
   }
-  */
+  
   
   
   public PlanComun getPlan(int i){

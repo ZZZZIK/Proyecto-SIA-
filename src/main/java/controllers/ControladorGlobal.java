@@ -228,23 +228,33 @@ public class ControladorGlobal implements MouseListener{
         
         }  
     }
-    
-    
-    
-    
-    
- 
+   
     
     public void agregarPlanCliente(){
         String msg="";
         String rut=p2.getRut();
+        int mbRoamingBasico=0;
+        int mbRoamingIntermedio=0;
+        int mbRoamingAvanzado=0;
+        
+        if (!p2.getLblRoamingBasico().isEmpty()){
+            mbRoamingBasico=Integer.parseInt(p2.getLblRoamingBasico());
+        }
+        if(!p2.getLblRoamingIntermedio().isEmpty()){
+            mbRoamingIntermedio=Integer.parseInt(p2.getLblRoamingIntermedio());
+        }
+        if(!p2.getLblRoamingAvanzado().isEmpty()){
+            mbRoamingAvanzado=Integer.parseInt(p2.getLblRoamingAvanzado());
+        }
+    
         try{
             
             
             if(planBasico){
                 
-                PlanComun plan= new PlanComun("Plan Basico",7000,100,1000,400,0);
+                PlanComun plan= new PlanComun("Plan Basico",7000,100,1000,400,0,"");
                 
+                plan.establecerRoaming(mbRoamingBasico);
                 gestor.agregarPlan(rut, plan);
                 
                 System.out.println("basico ");
@@ -252,7 +262,8 @@ public class ControladorGlobal implements MouseListener{
             }
             if(planIntermedio){
                 
-                PlanComun plan= new PlanComun("Plan Intermedio",9000,300,2000,600,0);
+                PlanComun plan= new PlanComun("Plan Intermedio",9000,300,2000,600,0,"");
+                plan.establecerRoaming(mbRoamingIntermedio);
                 gestor.agregarPlan(rut, plan);
                 
                 System.out.println("interm ");
@@ -260,7 +271,8 @@ public class ControladorGlobal implements MouseListener{
             }
             if(planAvanzado){
                 
-                PlanComun plan= new PlanComun("Plan Avanzado",11500,700,1000000,900,0);
+                PlanComun plan= new PlanComun("Plan Avanzado",11500,700,1000000,900,0,"");
+                plan.establecerRoaming(mbRoamingAvanzado);
                 gestor.agregarPlan(rut, plan);
                 
                 System.out.println("avanzao ");
@@ -268,8 +280,9 @@ public class ControladorGlobal implements MouseListener{
             }
             if(planLibre){
                 
-                PlanComun plan= new PlanComun("Plan Libre",1000000,1000000,1000000,1000000, 0);
+                PlanComun plan= new PlanComun("Plan Libre",15500,1000000,1000000,1000000, 0,"");
                 // Uso de sobrecarga roaming
+               
                 plan.establecerRoaming();
                 
                 gestor.agregarPlan(rut, plan);
@@ -279,32 +292,20 @@ public class ControladorGlobal implements MouseListener{
                 planLibre=false;
             }
             
-        /*
-            Plan Basico;7000;100;1000;400;0
-            Plan Intermedio;9000;300;2000;600;0
-            Plan Avanzado;11500;700;1000000;900;0
-            Plan Libre;1000000;1000000;1000000;1000000;0
-            PlanComun plan=
-            
-            gestor.agregarPlan(rut, )
-            
-        */    
-            
+        
             
             
         }catch(ClienteInexistenteException e){
             msg="No existe el Cliente";
-        }catch(Exception e){
+        }catch(RoamingException e2){
+            msg="roaming inválido";
+        }catch(Exception e3){
             msg="Plan no seleccionado";
         }
         
         p2.setStatus(msg);
    
     }
-    
-    
-    
-    
     
     
     public void agregarCliente() {
@@ -352,33 +353,70 @@ public class ControladorGlobal implements MouseListener{
         StyleConstants.setForeground(style, Color.BLACK);
                    
         String msg="";
-            try{
-                Cliente cliente=gestor.buscarCliente(p3.getRut());
-                if (cliente.getSizePlan()==0){
-                    doc.insertString(0,"La lista se encuentra vacia\n",style);
+        
+        int total=0;
+        Cliente cliente;
+        try{
+            cliente=gestor.buscarCliente(p3.getRut());
+            if (cliente.getSizePlan()==0){
+                doc.insertString(0,"La lista se encuentra vacia\n",style);
 
-                }
-
-                //Imprime los planes por orden de insercion
-                for(int i=cliente.getSizePlan()-1;i>=0;i--){
-
-                    PlanComun planI= cliente.getPlan(i);
-                    String nombre=planI.getNombre();
-                    doc.insertString(0,nombre+"\n",style);
-                }
-            //ClienteInexistente    
-            }catch(ClienteInexistenteException e1){
-                msg="No existe cliente";
-                        
-            }catch(Exception e2){
-                msg="Error:Nose";
-     
             }
-            p3.setLblstatusbusqueda(msg);
+
+            //Imprime los planes por orden de insercion
+                
+            for(int i=cliente.getSizePlan()-1;i>=0;i--){
+
+                PlanComun planI= cliente.getPlan(i);
+                String nombre=planI.getNombre();
+                    
+                int precio=(int)planI.getPrecio();
+                String getPrimerDesc=planI.getPrimerDesc();
+                 
+                if(i==0){
+                    precio=(int)cliente.descuento(precio);
+                }
+                doc.insertString(0,nombre + "        " + precio +"           "+getPrimerDesc+"\n",style);
+                total+=precio; 
+            }
+            //Ponemos el label con el del total sin descuento aplicado    
+           
+            //cliente.setTotalSinDesc(total);
+            cliente.setTotalSinDesc(total);
+            p3.setlblTotalSin((int)cliente.getTotalSinDescuento());
             
-   }
-    
-    
+            
+            //Obtenemos el total con descuento
+            double totDescuento= cliente.getTotalConDescuento();
+            
+            //Lo pasamos a int
+            int totDescuentoInt=(int) totDescuento;
+            
+            //Ponemos el label con el del total con descuento aplicado
+            p3.setlblTotalCon(totDescuentoInt);
+            
+            p3.setlblTotalPorcentaje("");
+            
+            //Solo en caso de poseer descuento se mostrará el porcentaje
+            if(cliente.getDctoTotal()!=0){
+                double descporcentaje=cliente.getDctoTotal()*100;
+                int descporcentajeInt = (int) descporcentaje;
+                
+                p3.setlblTotalPorcentaje("Descuento total de :"+descporcentajeInt + "%");
+            }
+            
+            //ClienteInexistente    
+        }catch(ClienteInexistenteException e1){
+            msg="No existe cliente";
+                        
+        }catch(Exception e2){
+            msg="Error:Nose";
+        }
+        
+            
+            
+                   
+    }
     
     
     
@@ -391,8 +429,6 @@ public class ControladorGlobal implements MouseListener{
         Style style = context.addStyle("test", null);
         // set some style properties
         StyleConstants.setForeground(style, Color.BLACK);
-        
-
         
         try{
             if (gestor.largolst()==0){
@@ -408,12 +444,8 @@ public class ControladorGlobal implements MouseListener{
         }catch(Exception e){
             
         }  
-}
+    }
     
-    
-    
-    
-
     @Override
     public void mousePressed(MouseEvent e) {
         //To change body of generated methods, choose Tools | Templates.

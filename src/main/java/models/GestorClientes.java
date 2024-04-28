@@ -80,8 +80,7 @@ public class GestorClientes {
   
         }
     }
-    
-        
+
     public void cargaDatos(){
 
         String persistencia = System.getProperty("user.dir") + "\\src\\main\\java\\Reporte.txt";
@@ -118,9 +117,16 @@ public class GestorClientes {
                         int minutos=Integer.parseInt(partes[3]);
                         int sms=Integer.parseInt(partes[4]);
                         int roaming=Integer.parseInt(partes[5]);
-                        
+                        String primerDesc="";
                         // Crear un nuevo objeto Plan y asociarlo al cliente actual
-                        PlanComun plan = new PlanComun(nombrePlan, precio, gigas, minutos, sms, roaming);
+                        if(clienteActual.getSizePlan()==0){
+                            //precio=clienteActual.descuento(precio);
+                            primerDesc="Descuento de 5%";
+                        }
+                        
+                        
+                        PlanComun plan = new PlanComun(nombrePlan, precio, gigas, minutos, sms, roaming,primerDesc);
+                        
                         clienteActual.setPlan(plan);
                     } else {
                         System.out.println("Error: se encontró un plan antes de un cliente");
@@ -132,16 +138,10 @@ public class GestorClientes {
                 System.out.println("Error: no se encontró el archivo");
             }catch (IOException e) {
                 System.out.println("Error al leer el archivo");
-        }
+            }
     }
     
     
-    
-    
-    
-    
-    
-      
     public Boolean agregarCliente(Cliente cliente) throws RutRepetidoException {
         if (!clientes.containsKey(cliente.getRut())) {
             clientes.put(cliente.getRut(), cliente);
@@ -168,8 +168,7 @@ public class GestorClientes {
             throw new ClienteInexistenteException();
         }
     }
-    
-    
+
     //******************************Métodos Planes************************************************
     
     public void agregarPlan(String rut, PlanComun plan) throws ClienteInexistenteException {
@@ -205,6 +204,7 @@ public class GestorClientes {
             throw new PlanInexistenteException();
         }
     }
+    
     /*
     ----- SUBCONJUNTO FILTRADO POR CRITERIO -----
     // Obtiene una lista de todos los clientes con cantidad de planes planes == numero ingresado 
@@ -221,14 +221,6 @@ public class GestorClientes {
         }
         return null;
     }
-    
-    /*
-    public ArrayList actualizarListaClientes() {
-        clientesLista.clear();
-        clientesLista.addAll(clientes.values());
-        return clientesLista;
-    }
-    */
     
     public void actualizarListaClientes() {
         ArrayList aux = new ArrayList<>(clientes.values());
@@ -248,6 +240,14 @@ public class GestorClientes {
         return clientes.values().size();
     }
     
+    // ----- MODIFICAR UN ELEMENTO ----- (oferta)
+    public static PlanComunConOferta aplicarDescuento(PlanComun planComun, double descuento) {
+        PlanComunConOferta planConDescuento = new PlanComunConOferta(planComun.getNombre(),planComun.getPrecio(),planComun.getGigas(),planComun.getMinutos(),planComun.getSms(),planComun.getRoaming(),planComun.getPrimerDesc());
+        planConDescuento.setPrecio(descuento);
+        return planConDescuento;
+    }
+
+    // en el main se ocuparia asi: se crea un planComun plan y se guarda este en el cliente: PlanComunConOferta planConDescuento = aplicarDescuento(plan, 50);
     
     
 }

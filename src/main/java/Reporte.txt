@@ -2,14 +2,32 @@ Cliente:
 pepe;1;pepe@gmail.com;98764535
 
 Planes:
-Plan Basico;70000.0;100;1000;400;0
-Plan Intermedio;90000.0;300;2000;600;0
-Plan Avanzado;115000.0;700;1000000;900;0
-Plan Libre;1000000.0;1000000;1000000;1000000;1000000
+Plan Basico;7000.0;100;1000;400;0
+Plan Intermedio;9000.0;300;2000;600;0
+Plan Avanzado;11500.0;700;1000000;900;0
+Plan Libre;15500.0;1000000;1000000;1000000;1000000
+
+Cliente: 
+aaa;a;aaa;23
+
+Planes:
+Plan Basico;7000.0;100;1000;400;0
+Plan Intermedio;9000.0;300;2000;600;0
+Plan Avanzado;11500.0;700;1000000;900;0
+Plan Basico;7000.0;100;1000;400;0
+Plan Intermedio;9000.0;300;2000;600;0
+Plan Avanzado;11500.0;700;1000000;900;0
+Plan Libre;15500.0;1000000;1000000;1000000;1000000
+Plan Basico;7000.0;100;1000;400;0
+Plan Intermedio;9000.0;300;2000;600;0
+Plan Avanzado;11500.0;700;1000000;900;0
+Plan Basico;7000.0;100;1000;400;0
+Plan Basico;7000.0;100;1000;400;50
 
 Cliente: 
 juan;2;pepa@gmail.com;98764538
 
 Planes:
-Plan Avanzado;115000.0;700;1000000;900;0
+Plan Avanzado;11500.0;700;1000000;900;0
+Plan Avanzado;16490.0;700;1000000;900;100
 
