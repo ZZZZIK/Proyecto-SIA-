@@ -25,20 +25,24 @@ public class PlanComun {
 
   // METODOS
   //caso 1, roaming libre , usuario tiene roaming ilimitado y no tiene que ingresar nada
-  public void establecerRoaming() {
+  public boolean establecerRoaming() {
     if (nombre == "Plan Libre") {
-      roaming = 1000000;
+      roaming = 9999999;
+      return true;
     }
     else {
       System.out.println("Roaming no disponible para este plan.");
+      return false;
     }
   }
   // Caso 2, roaming no libre, usuario debe decir cuantos mb quiere 
   public boolean establecerRoaming(int mb) throws RoamingException{
-    if (mb == 50 || mb == 100 || mb == 200 || mb ==0) {
+    if (mb==0){
+        return false;
+    }
+    else if (mb == 50 || mb == 100 || mb == 200 ) {
       roaming += mb;
       setPrecioRoaming();
-      System.out.println("Roaming establecido correctamente");
       return true;
     } else {
         throw new RoamingException();

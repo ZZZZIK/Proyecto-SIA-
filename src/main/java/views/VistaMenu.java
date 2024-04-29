@@ -8,12 +8,13 @@ public class VistaMenu extends javax.swing.JFrame {
     private Page2 p2;
     private Page3 p3;
     private Page4 p4;
+    private Page5 p5;
     
     public VistaMenu() {
         initComponents();
     }
     
-    public VistaMenu(Page1 p1,Page2 p2,Page3 p3,Page4 p4) {
+    public VistaMenu(Page1 p1,Page2 p2,Page3 p3,Page4 p4,Page5 p5) {
         initComponents();
         HomePage home= new HomePage();
         home.setSize(675,550);
@@ -28,6 +29,7 @@ public class VistaMenu extends javax.swing.JFrame {
         this.p2=p2;
         this.p3=p3;
         this.p4=p4;
+        this.p5=p5;
     }
 
     /**
@@ -41,6 +43,7 @@ public class VistaMenu extends javax.swing.JFrame {
 
         jPasswordField1 = new javax.swing.JPasswordField();
         jLabel1 = new javax.swing.JLabel();
+        filler1 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(32767, 32767));
         bg = new javax.swing.JPanel();
         pageBtn3 = new javax.swing.JButton();
         pageBtn1 = new javax.swing.JButton();
@@ -49,7 +52,7 @@ public class VistaMenu extends javax.swing.JFrame {
         home = new javax.swing.JButton();
         pageBtn4 = new javax.swing.JButton();
         btnSalir = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        btnModM = new javax.swing.JButton();
 
         jPasswordField1.setText("jPasswordField1");
 
@@ -108,7 +111,12 @@ public class VistaMenu extends javax.swing.JFrame {
 
         btnSalir.setText("Guardar y Salir");
 
-        jButton1.setText("Oferta (Modificar)");
+        btnModM.setText("Modificar Plan");
+        btnModM.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModMActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout bgLayout = new javax.swing.GroupLayout(bg);
         bg.setLayout(bgLayout);
@@ -123,7 +131,7 @@ public class VistaMenu extends javax.swing.JFrame {
                     .addComponent(home, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(pageBtn4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnSalir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnModM, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(content, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -143,7 +151,7 @@ public class VistaMenu extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(pageBtn4, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnModM, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(223, 223, 223)
                         .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18))
@@ -212,6 +220,17 @@ public class VistaMenu extends javax.swing.JFrame {
         content.repaint();
     }//GEN-LAST:event_pageBtn4ActionPerformed
 
+    private void btnModMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModMActionPerformed
+        
+        p5.setSize(675,550);
+        p5.setLocation(0,0);
+        
+        content.removeAll();
+        content.add(p5, BorderLayout.CENTER);
+        content.revalidate();
+        content.repaint();
+    }//GEN-LAST:event_btnModMActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -254,6 +273,9 @@ public class VistaMenu extends javax.swing.JFrame {
         return btnSalir;
     }
     
+    public JButton getBtnModM(){
+        return btnModM;
+    }
     
     
     
@@ -263,10 +285,11 @@ public class VistaMenu extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel bg;
+    private javax.swing.JButton btnModM;
     private javax.swing.JButton btnSalir;
     private javax.swing.JPanel content;
+    private javax.swing.Box.Filler filler1;
     private javax.swing.JButton home;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JButton pageBtn1;

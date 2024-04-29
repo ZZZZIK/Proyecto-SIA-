@@ -12,6 +12,16 @@
         <Property name="text" type="java.lang.String" value="jLabel1"/>
       </Properties>
     </Component>
+    <Component class="javax.swing.Box$Filler" name="filler1">
+      <Properties>
+        <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+          <Dimension value="[32767, 32767]"/>
+        </Property>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="classDetails" type="java.lang.String" value="Box.Filler.Glue"/>
+      </AuxValues>
+    </Component>
   </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
@@ -61,7 +71,7 @@
                       <Component id="home" min="-2" pref="51" max="-2" attributes="0"/>
                       <Component id="pageBtn4" alignment="0" max="32767" attributes="0"/>
                       <Component id="btnSalir" max="32767" attributes="0"/>
-                      <Component id="jButton1" max="32767" attributes="0"/>
+                      <Component id="btnModM" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="content" min="-2" max="-2" attributes="0"/>
@@ -84,7 +94,7 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="pageBtn4" min="-2" pref="40" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jButton1" min="-2" pref="40" max="-2" attributes="0"/>
+                          <Component id="btnModM" min="-2" pref="40" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="223" max="-2" attributes="0"/>
                           <Component id="btnSalir" min="-2" pref="40" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
@@ -157,10 +167,13 @@
             <Property name="text" type="java.lang.String" value="Guardar y Salir"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="jButton1">
+        <Component class="javax.swing.JButton" name="btnModM">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Oferta (Modificar)"/>
+            <Property name="text" type="java.lang.String" value="Modificar Plan"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnModMActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

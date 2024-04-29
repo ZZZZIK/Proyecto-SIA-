@@ -117,6 +117,11 @@ public class Cliente {
       listaPlanes.add(plan);
   }
   
+  public void setVIP(boolean vip) {
+    this.vip = vip;
+  }
+  
+  
   
   //**************************************************************
   // METODOS GETTER
@@ -147,7 +152,6 @@ public class Cliente {
     return totalSinDescuento;
   }
   
-
   public double getTotalConDescuento(){
     double totalConDescuento = descuento(getTotalSinDescuento(),listaPlanes.size());
     this.totalConDescuento=totalConDescuento;
@@ -168,7 +172,9 @@ public class Cliente {
   public int getSizePlan(){
       return listaPlanes.size();
   }
-  
+  public boolean getVIP() {
+    return vip;
+  }
   
   
 }
