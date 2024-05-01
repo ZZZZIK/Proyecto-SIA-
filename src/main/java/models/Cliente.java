@@ -42,25 +42,24 @@ public class Cliente {
   public double descuento(double totalApagar,int cant_planes){
   
     if(cant_planes<3){
-        System.out.println("cant planes ; "+cant_planes);
-        System.out.println("tot a pagar "+totalApagar);
+        
         return totalApagar;
     }  
     
     if (cant_planes>=9) {
-      System.out.println("Limite del 30% alcanzado.");
+      
       double precioFinal=totalApagar-(totalApagar*0.3);
       this.dctoTotal =0.3;
       return precioFinal; // No se aplica más descuento
     }
     int acumDcto = cant_planes / 3;
     
-    System.out.println(acumDcto);
+    
     double precioDescuento = totalSinDescuento * (0.1 * acumDcto);
     //double precioDescuento = totalSinDescuento * (0.1 * acumDcto);
     double precioFinal = totalSinDescuento - precioDescuento;
     this.dctoTotal = (0.1 * acumDcto);
-    System.out.println(this.dctoTotal);
+    
     //guardamos el total a pagar en el cliente
     this.totalSinDescuento = precioFinal;
     return precioFinal;

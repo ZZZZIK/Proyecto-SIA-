@@ -22,6 +22,14 @@ public class GestorClientes {
     }
     
     // ******************************Métodos Persistencia************************************************
+    
+    
+  
+    
+    
+    
+    
+    
     public void guardarDatos(){
         String persistencia = System.getProperty("user.dir") + "\\src\\main\\java\\Reporte.txt";
         
