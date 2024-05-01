@@ -6,6 +6,7 @@ public class PlanComunConOferta extends PlanComun {
 
     public PlanComunConOferta(String nombre, double precio, int gigas, int minutos, int sms, int roaming,String primerDesc) {
         super(nombre, precio, gigas, minutos, sms, roaming,primerDesc);
+        
     }
 
     @Override
