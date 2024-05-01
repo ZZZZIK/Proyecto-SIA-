@@ -1,60 +1,157 @@
 Cliente: 
-alberto;0;aaa@gmail.com;9;false
 
-Planes:
-Plan Basico;7000.0;100;1000;400;0
-Plan Intermedio;9000.0;300;2000;600;0
-Plan Avanzado;11500.0;700;1000000;900;0
-Plan Basico;7000.0;100;1000;400;0
-Plan Intermedio;9000.0;300;2000;600;0
-Plan Avanzado;11500.0;700;1000000;900;0
+Nombre Cliente: alberto
+Rut Cliente: 0
+Correo cliente: aaa@gmail.com
+Numero telefonico del cliente: 9
+Cliente es vip: false
 
+Planes del cliente: 
+
+Plan Basico: Precio: $7000.0 Gigas:100gb Minutos:1000 Mensajes:400 Roaming:0mb
+Plan Intermedio: Precio: $9000.0 Gigas:300gb Minutos:2000 Mensajes:600 Roaming:0mb
+Plan Avanzado: Precio: $11500.0 Gigas:700gb Minutos:1000000 Mensajes:900 Roaming:0mb
+Plan Basico: Precio: $7000.0 Gigas:100gb Minutos:1000 Mensajes:400 Roaming:0mb
+Plan Intermedio: Precio: $9000.0 Gigas:300gb Minutos:2000 Mensajes:600 Roaming:0mb
+Plan Avanzado: Precio: $11500.0 Gigas:700gb Minutos:1000000 Mensajes:900 Roaming:0mb
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////
 Cliente: 
-pepe;1;pepe@gmail.com;98764535;true
 
-Planes:
-Plan Basico;7000.0;100;1000;400;0
-Plan Intermedio;9000.0;300;2000;600;0
-Plan Avanzado;11500.0;700;1000000;900;0
-Plan Libre;15500.0;1000000;1000000;1000000;1000000
+Nombre Cliente: pepe
+Rut Cliente: 1
+Correo cliente: pepe@gmail.com
+Numero telefonico del cliente: 98764535
+Cliente es vip: true
 
+Planes del cliente: 
+
+Plan Basico: Precio: $7000.0 Gigas:100gb Minutos:1000 Mensajes:400 Roaming:0mb
+Plan Intermedio: Precio: $9000.0 Gigas:300gb Minutos:2000 Mensajes:600 Roaming:0mb
+Plan Avanzado: Precio: $11500.0 Gigas:700gb Minutos:1000000 Mensajes:900 Roaming:0mb
+Plan Libre: Precio: $15500.0 Gigas:1000000gb Minutos:1000000 Mensajes:1000000 Roaming:9999999mb
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////
 Cliente: 
-aaa;a;aaa;23;true
 
-Planes:
-Plan Basico;7000.0;100;1000;400;0
-Plan Intermedio;9000.0;300;2000;600;0
-Plan Avanzado;11500.0;700;1000000;900;0
-Plan Basico;7000.0;100;1000;400;0
-Plan Intermedio;9000.0;300;2000;600;0
-Plan Avanzado;11500.0;700;1000000;900;0
-Plan Libre;15500.0;1000000;1000000;1000000;1000000
-Plan Basico;7000.0;100;1000;400;0
-Plan Intermedio;9000.0;300;2000;600;0
-Plan Avanzado;11500.0;700;1000000;900;0
-Plan Basico;7000.0;100;1000;400;0
-Plan Basico;7000.0;100;1000;400;50
+Nombre Cliente: aaa
+Rut Cliente: a
+Correo cliente: aaa
+Numero telefonico del cliente: 23
+Cliente es vip: true
 
+Planes del cliente: 
+
+Plan Basico: Precio: $7000.0 Gigas:100gb Minutos:1000 Mensajes:400 Roaming:0mb
+Plan Intermedio: Precio: $9000.0 Gigas:300gb Minutos:2000 Mensajes:600 Roaming:0mb
+Plan Avanzado: Precio: $11500.0 Gigas:700gb Minutos:1000000 Mensajes:900 Roaming:0mb
+Plan Basico: Precio: $7000.0 Gigas:100gb Minutos:1000 Mensajes:400 Roaming:0mb
+Plan Intermedio: Precio: $9000.0 Gigas:300gb Minutos:2000 Mensajes:600 Roaming:0mb
+Plan Avanzado: Precio: $11500.0 Gigas:700gb Minutos:1000000 Mensajes:900 Roaming:0mb
+Plan Libre: Precio: $15500.0 Gigas:1000000gb Minutos:1000000 Mensajes:1000000 Roaming:9999999mb
+Plan Basico: Precio: $7000.0 Gigas:100gb Minutos:1000 Mensajes:400 Roaming:0mb
+Plan Intermedio: Precio: $9000.0 Gigas:300gb Minutos:2000 Mensajes:600 Roaming:0mb
+Plan Avanzado: Precio: $11500.0 Gigas:700gb Minutos:1000000 Mensajes:900 Roaming:0mb
+Plan Basico: Precio: $7000.0 Gigas:100gb Minutos:1000 Mensajes:400 Roaming:0mb
+Plan Basico: Precio: $7000.0 Gigas:100gb Minutos:1000 Mensajes:400 Roaming:50mb
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////
 Cliente: 
-juan;2;pepa@gmail.com;98764538;false
 
-Planes:
-Plan Avanzado;11500.0;700;1000000;900;0
-Plan Avanzado;16490.0;700;1000000;900;100
-Plan Intermedio;9000.0;300;2000;600;0
+Nombre Cliente: juan
+Rut Cliente: 2
+Correo cliente: pepa@gmail.com
+Numero telefonico del cliente: 98764538
+Cliente es vip: false
 
+Planes del cliente: 
+
+Plan Avanzado: Precio: $11500.0 Gigas:700gb Minutos:1000000 Mensajes:900 Roaming:0mb
+Plan Avanzado: Precio: $16490.0 Gigas:700gb Minutos:1000000 Mensajes:900 Roaming:100mb
+Plan Intermedio: Precio: $9000.0 Gigas:300gb Minutos:2000 Mensajes:600 Roaming:0mb
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////
 Cliente: 
-Alberto;3;aa;90;true
 
-Planes:
-Plan Basico;7000.0;100;1000;400;0
-Plan Intermedio;9000.0;300;2000;600;0
-Plan Avanzado;11500.0;700;1000000;900;0
+Nombre Cliente: Alberto
+Rut Cliente: 3
+Correo cliente: aa
+Numero telefonico del cliente: 90
+Cliente es vip: true
 
+Planes del cliente: 
+
+Plan Basico: Precio: $7000.0 Gigas:100gb Minutos:1000 Mensajes:400 Roaming:0mb
+Plan Intermedio: Precio: $9000.0 Gigas:300gb Minutos:2000 Mensajes:600 Roaming:0mb
+Plan Avanzado: Precio: $11500.0 Gigas:700gb Minutos:1000000 Mensajes:900 Roaming:0mb
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////
 Cliente: 
-Vicente;4;aa;9;false
 
-Planes:
-Plan Avanzado;11500.0;700;1000000;900;0
-Plan Libre;15500.0;1000000;1000000;1000000;1000000
+Nombre Cliente: Vicente
+Rut Cliente: 4
+Correo cliente: aa
+Numero telefonico del cliente: 9
+Cliente es vip: false
 
+Planes del cliente: 
+
+Plan Avanzado: Precio: $11500.0 Gigas:700gb Minutos:1000000 Mensajes:900 Roaming:0mb
+Plan Libre: Precio: $15500.0 Gigas:1000000gb Minutos:1000000 Mensajes:1000000 Roaming:9999999mb
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////
+Cliente: 
+
+Nombre Cliente: j
+Rut Cliente: 6
+Correo cliente: i
+Numero telefonico del cliente: 8
+Cliente es vip: false
+
+Planes del cliente: 
+
+Plan Libre: Precio: $15500.0 Gigas:1000000gb Minutos:1000000 Mensajes:1000000 Roaming:9999999mb
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////
+Cliente: 
+
+Nombre Cliente: Mauricio
+Rut Cliente: 12345678
+Correo cliente: correo@gmail.com
+Numero telefonico del cliente: 9876543
+Cliente es vip: false
+
+Planes del cliente: 
+
+Plan Intermedio: Precio: $11990.0 Gigas:300gb Minutos:2000 Mensajes:600 Roaming:50mb
+Plan Avanzado: Precio: $19490.0 Gigas:700gb Minutos:1000000 Mensajes:900 Roaming:200mb
+Plan Libre: Precio: $15500.0 Gigas:1000000gb Minutos:1000000 Mensajes:1000000 Roaming:9999999mb
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////
+Cliente: 
+
+Nombre Cliente: roberto
+Rut Cliente: 21
+Correo cliente: aa@hotmail.com
+Numero telefonico del cliente: 12345
+Cliente es vip: true
+
+Planes del cliente: 
+
+Plan Avanzado: Precio: $19490.0 Gigas:700gb Minutos:1000000 Mensajes:900 Roaming:200mb
+Plan Libre: Precio: $15500.0 Gigas:1000000gb Minutos:1000000 Mensajes:1000000 Roaming:9999999mb
+Plan Basico: Precio: $9990.0 Gigas:100gb Minutos:1000 Mensajes:400 Roaming:50mb
+Plan Intermedio: Precio: $9000.0 Gigas:300gb Minutos:2000 Mensajes:600 Roaming:0mb
+Plan Avanzado: Precio: $19490.0 Gigas:700gb Minutos:1000000 Mensajes:900 Roaming:200mb
+Plan Libre: Precio: $15500.0 Gigas:1000000gb Minutos:1000000 Mensajes:1000000 Roaming:9999999mb
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////

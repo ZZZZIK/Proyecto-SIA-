@@ -1,0 +1,85 @@
+Cliente: 
+alberto;0;aaa@gmail.com;9;false
+
+Planes:
+Plan Basico;7000.0;100;1000;400;0
+Plan Intermedio;9000.0;300;2000;600;0
+Plan Avanzado;11500.0;700;1000000;900;0
+Plan Basico;7000.0;100;1000;400;0
+Plan Intermedio;9000.0;300;2000;600;0
+Plan Avanzado;11500.0;700;1000000;900;0
+
+Cliente: 
+pepe;1;pepe@gmail.com;98764535;true
+
+Planes:
+Plan Basico;7000.0;100;1000;400;0
+Plan Intermedio;9000.0;300;2000;600;0
+Plan Avanzado;11500.0;700;1000000;900;0
+Plan Libre;15500.0;1000000;1000000;1000000;9999999
+
+Cliente: 
+aaa;a;aaa;23;true
+
+Planes:
+Plan Basico;7000.0;100;1000;400;0
+Plan Intermedio;9000.0;300;2000;600;0
+Plan Avanzado;11500.0;700;1000000;900;0
+Plan Basico;7000.0;100;1000;400;0
+Plan Intermedio;9000.0;300;2000;600;0
+Plan Avanzado;11500.0;700;1000000;900;0
+Plan Libre;15500.0;1000000;1000000;1000000;9999999
+Plan Basico;7000.0;100;1000;400;0
+Plan Intermedio;9000.0;300;2000;600;0
+Plan Avanzado;11500.0;700;1000000;900;0
+Plan Basico;7000.0;100;1000;400;0
+Plan Basico;7000.0;100;1000;400;50
+
+Cliente: 
+juan;2;pepa@gmail.com;98764538;false
+
+Planes:
+Plan Avanzado;11500.0;700;1000000;900;0
+Plan Avanzado;16490.0;700;1000000;900;100
+Plan Intermedio;9000.0;300;2000;600;0
+
+Cliente: 
+Alberto;3;aa;90;true
+
+Planes:
+Plan Basico;7000.0;100;1000;400;0
+Plan Intermedio;9000.0;300;2000;600;0
+Plan Avanzado;11500.0;700;1000000;900;0
+
+Cliente: 
+Vicente;4;aa;9;false
+
+Planes:
+Plan Avanzado;11500.0;700;1000000;900;0
+Plan Libre;15500.0;1000000;1000000;1000000;9999999
+
+Cliente: 
+j;6;i;8;false
+
+Planes:
+Plan Libre;15500.0;1000000;1000000;1000000;9999999
+
+Cliente: 
+Mauricio;12345678;correo@gmail.com;9876543;false
+
+Planes:
+Plan Intermedio;11990.0;300;2000;600;50
+Plan Avanzado;19490.0;700;1000000;900;200
+Plan Libre;15500.0;1000000;1000000;1000000;9999999
+
+Cliente: 
+roberto;21;aa@hotmail.com;12345;true
+
+Planes:
+Plan Avanzado;19490.0;700;1000000;900;200
+Plan Libre;15500.0;1000000;1000000;1000000;9999999
+Plan Basico;9990.0;100;1000;400;50
+Plan Intermedio;9000.0;300;2000;600;0
+Plan Avanzado;19490.0;700;1000000;900;200
+Plan Libre;15500.0;1000000;1000000;1000000;9999999
+

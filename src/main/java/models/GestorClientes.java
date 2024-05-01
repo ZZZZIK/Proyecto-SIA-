@@ -22,16 +22,74 @@ public class GestorClientes {
     }
     
     // ******************************Métodos Persistencia************************************************
+    public void generarReporte(){
+        String reporte = System.getProperty("user.dir") + "\\src\\main\\java\\Reporte.txt";
+        
+        try{
+            BufferedReader lector = new BufferedReader(new FileReader(reporte));  
+            // Vaciamos el archivo persistencia
+            BufferedWriter escritor = new BufferedWriter(new FileWriter(reporte));
+            
+            //Obtenemos un arraylist con todos los ruts
+            ArrayList<Cliente> lstClientesRut=new ArrayList<Cliente>(clientes.values());
+            for(int i=0;i<lstClientesRut.size();i++){
+                
+                Cliente cliente= (Cliente) lstClientesRut.get(i);
+               
+                String nombre=cliente.getNombre();
+                String rut = cliente.getRut();
+                String correo= cliente.getCorreo();
+                int num= cliente.getNumTelefono();
+                boolean vip=cliente.getVIP();
+                
+                escritor.write("Cliente: ");
+                escritor.newLine();
+                escritor.newLine();
+                escritor.write("Nombre Cliente: " + nombre);
+                escritor.newLine();
+                escritor.write("Rut Cliente: " + rut);
+                escritor.newLine();
+                escritor.write("Correo cliente: " + correo);
+                escritor.newLine();
+                escritor.write("Numero telefonico del cliente: " + num);
+                escritor.newLine();
+                escritor.write("Cliente es vip: " + vip);
+
+                escritor.newLine();
+                escritor.newLine();
+                // Imprimir los planes del cliente
+                escritor.write("Planes del cliente: ");
+                escritor.newLine();
+                escritor.newLine();
+                
+                // Obtenemos e imprimimos los planes
+                for(int j=0;j<cliente.getSizePlan();j++){
+                    PlanComun plan= (PlanComun) cliente.getPlan(j);
+                    escritor.write(plan.getNombre() + ": Precio: $" + plan.getPrecio() + " Gigas:" + plan.getGigas()+"gb" + " Minutos:" + plan.getMinutos() + " Mensajes:" + plan.getSms() + " Roaming:" + plan.getRoaming()+"mb");
+                    escritor.newLine();
+                }
+                escritor.newLine();
+                escritor.newLine();
+                escritor.write("/////////////////////////////////////////////////////////////////////////////////////////////////////////////");
+                escritor.newLine();
+            }
+            escritor.close();
+        }catch (FileNotFoundException e) {
+            System.out.println("Error: no se encontró el archivo");
+        }catch (IOException e) {
+            System.out.println("Error al leer el archivo");
+        }
+     
     
-    
-  
-    
-    
-    
+        
+        
+        
+        
+    }
     
     
     public void guardarDatos(){
-        String persistencia = System.getProperty("user.dir") + "\\src\\main\\java\\Reporte.txt";
+        String persistencia = System.getProperty("user.dir") + "\\src\\main\\java\\Persistencia.txt";
         
         try{
             BufferedReader lector = new BufferedReader(new FileReader(persistencia));  
@@ -77,7 +135,7 @@ public class GestorClientes {
     }
 
     public void cargaDatos(){
-        String persistencia = System.getProperty("user.dir") + "\\src\\main\\java\\Reporte.txt";
+        String persistencia = System.getProperty("user.dir") + "\\src\\main\\java\\Persistencia.txt";
 
         try {
             BufferedReader lector = new BufferedReader(new FileReader(persistencia));

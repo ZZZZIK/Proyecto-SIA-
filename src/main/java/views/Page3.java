@@ -29,6 +29,7 @@ public class Page3 extends javax.swing.JPanel {
         lblTotalPorcentaje = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -67,6 +68,8 @@ public class Page3 extends javax.swing.JPanel {
 
         jLabel7.setText("() Por cada 3 planes contratados, recibirá un 10% de dcto. acumulable en el total de su compra. (con tope del 30%)");
 
+        jLabel8.setText("() Si es usuario vip se le proporcionará un 15% extra al total.");
+
         javax.swing.GroupLayout bgLayout = new javax.swing.GroupLayout(bg);
         bg.setLayout(bgLayout);
         bgLayout.setHorizontalGroup(
@@ -96,17 +99,23 @@ public class Page3 extends javax.swing.JPanel {
                                         .addGap(55, 55, 55)
                                         .addComponent(lblTotalSin))
                                     .addComponent(lblTotalPorcentaje, javax.swing.GroupLayout.PREFERRED_SIZE, 296, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(jLabel7)))
+                            .addGroup(bgLayout.createSequentialGroup()
+                                .addGap(40, 40, 40)
+                                .addComponent(jLabel7))))
                     .addGroup(bgLayout.createSequentialGroup()
                         .addGap(181, 181, 181)
                         .addComponent(jLabel3)
                         .addGap(18, 18, 18)
                         .addComponent(lblstatusbusqueda)))
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addContainerGap(24, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bgLayout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabel5)
-                .addGap(113, 113, 113))
+                .addGroup(bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(bgLayout.createSequentialGroup()
+                        .addGap(35, 35, 35)
+                        .addComponent(jLabel8))
+                    .addComponent(jLabel5))
+                .addGap(163, 163, 163))
         );
         bgLayout.setVerticalGroup(
             bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -136,7 +145,9 @@ public class Page3 extends javax.swing.JPanel {
                             .addComponent(lblTotalCon))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(lblTotalPorcentaje)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
+                .addComponent(jLabel8)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel7)
@@ -192,6 +203,7 @@ public class Page3 extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblTotalCon;
     private javax.swing.JLabel lblTotalPorcentaje;

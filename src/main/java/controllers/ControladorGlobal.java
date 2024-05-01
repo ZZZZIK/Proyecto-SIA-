@@ -64,6 +64,9 @@ public class ControladorGlobal implements MouseListener{
         
         this.ventanaPrincipal.getpageBtn4().addMouseListener(this);
         this.ventanaPrincipal.getSalirbtn().addMouseListener(this);
+        this.ventanaPrincipal.getBtnReporte().addMouseListener(this);
+        
+        
     }
       
     public void mouseClicked(MouseEvent e) {
@@ -109,6 +112,11 @@ public class ControladorGlobal implements MouseListener{
         if (e.getSource()== ventanaPrincipal.getpageBtn4()){
             mostrarClientes();
         }
+        
+        if (e.getSource()== ventanaPrincipal.getBtnReporte()){
+            gestor.generarReporte();
+        }
+       
         // Cuando se presiona el boton de salir del programa...
         if (e.getSource()== ventanaPrincipal.getSalirbtn()){
             //Escritura persistencia
@@ -226,7 +234,7 @@ public class ControladorGlobal implements MouseListener{
                 desc="";
             }
             if(planLibre){
-                PlanComun plan= new PlanComun("Plan Libre",15500,1000000,1000000,1000000, 0,desc);
+                PlanComun plan= new PlanComun("Plan Libre",15500,1000000,1000000,1000000,9999999,desc);
                 // Uso de sobrecarga roaming
                 if(plan.establecerRoaming()){
                     msgRoaming="y roaming ilimitado añadido";

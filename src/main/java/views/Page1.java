@@ -32,8 +32,6 @@ public class Page1 extends javax.swing.JPanel {
         lblstatus = new javax.swing.JLabel();
         btnRVip = new javax.swing.JRadioButton();
 
-        bg.setBackground(new java.awt.Color(204, 204, 204));
-
         jLabel1.setText("Crear Cliente");
 
         jLabel3.setText("Ingrese su rut:");
